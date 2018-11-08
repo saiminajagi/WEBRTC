@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:brandiqa/simplewebrtc-messenger.git"
+    "url": "git+ssh://git@github.com/brandiqa/simplewebrtc-messenger.git"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -20,5 +20,10 @@
     "jquery": "^3.3.1",
     "semantic-ui-css": "^2.3.1",
     "simplewebrtc": "^3.0.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/brandiqa/simplewebrtc-messenger/issues"
+  },
+  "homepage": "https://github.com/brandiqa/simplewebrtc-messenger#readme",
+  "main": "server.js"
 }

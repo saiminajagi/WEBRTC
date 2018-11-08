@@ -1,13 +1,7 @@
-// Muaz Khan    - www.MuazKhan.com
-// MIT License  - www.WebRTC-Experiment.com/licence
-// Source Code  - https://github.com/muaz-khan/FileBufferReader
 
-// _________
-// PeerUI.js
 
 window.addEventListener('load', function() {
-    var setupOffer = document.getElementById('setup-offer'),
-        innerHTML;
+    var setupOffer = document.getElementById('setup-offer'),innerHTML;
 
     var SIGNALING_URI = 'wss://webrtcweb.com:9449/';
 
@@ -32,6 +26,8 @@ window.addEventListener('load', function() {
         if (location.hash.length > 2) {
             document.getElementById('share-this-link').innerHTML = '<a href="' + location.href + '" target="_blank">Share this link with other users!</a>';
             info.innerHTML = 'Your UNIQUE room-id is: ' + location.hash.replace('#', '') + '.<br>Open <a href="' + location.href + '" target="_blank">same URL</a> on a new window or tab.';
+            console.log("GPNNNNNN")
+            console.log(location.href)
             info.style.display = 'block';
         }
     };
@@ -114,8 +110,8 @@ window.addEventListener('load', function() {
             progressHelper[file.uuid].progress.max = file.maxChunks;
 
             btnSelectFile.disabled = true;
-            btnSelectDirectory.disabled = true;
-            btnSelectMultiple.disabled = true;
+            // btnSelectDirectory.disabled = true;
+            // btnSelectMultiple.disabled = true;
 
             if (fileSelector.lastSelectedFile) {
                 if (filesRemaining.files) {
@@ -147,13 +143,13 @@ window.addEventListener('load', function() {
         onEnd: function(file) {
             previewFile(file);
 
-            btnSelectFile.innerHTML = 'Single';
-            btnSelectDirectory.innerHTML = 'Directory';
-            btnSelectMultiple.innerHTML = 'Multiple';
+            btnSelectFile.innerHTML = 'Browse';
+            // btnSelectDirectory.innerHTML = 'Directory';
+            // btnSelectMultiple.innerHTML = 'Multiple';
             if (peerConnection.isOpened) {
                 btnSelectFile.disabled = false;
-                btnSelectDirectory.disabled = false;
-                btnSelectMultiple.disabled = false;
+                // btnSelectDirectory.disabled = false;
+                // btnSelectMultiple.disabled = false;
             }
 
             progressHelper.lastFileUUID = null;
@@ -202,14 +198,14 @@ window.addEventListener('load', function() {
                     progressHelper.startedAt = (new Date).getTime();
                 };
             } else {
-                btnSelectFile.innerHTML = 'Single';
-                btnSelectDirectory.innerHTML = 'Directory';
-                btnSelectMultiple.innerHTML = 'Multiple';
+                btnSelectFile.innerHTML = 'Browse';
+                // btnSelectDirectory.innerHTML = 'Directory';
+                // btnSelectMultiple.innerHTML = 'Multiple';
 
                 if (peerConnection.isOpened) {
                     btnSelectFile.disabled = false;
-                    btnSelectDirectory.disabled = false;
-                    btnSelectMultiple.disabled = false;
+                    // btnSelectDirectory.disabled = false;
+                    // btnSelectMultiple.disabled = false;
                 }
             }
         }
@@ -234,13 +230,13 @@ window.addEventListener('load', function() {
         setupOffer.disabled = true;
 
         btnSelectFile.disabled = false;
-        btnSelectFile.innerHTML = 'Single';
+        btnSelectFile.innerHTML = 'Browse';
 
-        btnSelectDirectory.disabled = false;
-        btnSelectDirectory.innerHTML = 'Directory';
+        // btnSelectDirectory.disabled = false;
+        // btnSelectDirectory.innerHTML = 'Directory';
 
-        btnSelectMultiple.disabled = false;
-        btnSelectMultiple.innerHTML = 'Multiple';
+        // btnSelectMultiple.disabled = false;
+        // btnSelectMultiple.innerHTML = 'Multiple';
     };
 
     peerConnection.onclose = function() {
@@ -257,14 +253,14 @@ window.addEventListener('load', function() {
     };
 
     function resetButtons() {
-        btnSelectFile.innerHTML = 'Single';
+        btnSelectFile.innerHTML = 'Browse';
         btnSelectFile.disabled = true;
 
-        btnSelectDirectory.innerHTML = 'Directory';
-        btnSelectDirectory.disabled = true;
+        // btnSelectDirectory.innerHTML = 'Directory';
+        // btnSelectDirectory.disabled = true;
 
-        btnSelectMultiple.innerHTML = 'Multiple';
-        btnSelectMultiple.disabled = true;
+        // btnSelectMultiple.innerHTML = 'Multiple';
+        // btnSelectMultiple.disabled = true;
 
         setupOffer.disabled = false;
         setupOffer.innerHTML = 'Setup WebRTC Connection';
@@ -422,14 +418,14 @@ window.addEventListener('load', function() {
 
         setTimeout(function() {
             if (fileSelector.lastSelectedFile) return;
-            btnSelectFile.innerHTML = 'Single';
+            btnSelectFile.innerHTML = 'Browse';
             btnSelectFile.disabled = false;
 
-            btnSelectDirectory.innerHTML = 'Directory';
-            btnSelectDirectory.disabled = false;
+            // btnSelectDirectory.innerHTML = 'Directory';
+            // btnSelectDirectory.disabled = false;
 
-            btnSelectMultiple.innerHTML = 'Multiple';
-            btnSelectMultiple.disabled = false;
+            // btnSelectMultiple.innerHTML = 'Multiple';
+            // btnSelectMultiple.disabled = false;
         }, 5000);
     }
 
@@ -441,32 +437,32 @@ window.addEventListener('load', function() {
         }, onNoFileSelected);
     };
 
-    var btnSelectMultiple = document.getElementById('select-multiple');
-    btnSelectMultiple.onclick = function() {
-        btnSelectMultiple.disabled = true;
-        fileSelector.selectMultipleFiles(function(files) {
-            filesRemaining = {
-                files: files,
-                idx: 0
-            };
+    // var btnSelectMultiple = document.getElementById('select-multiple');
+    // btnSelectMultiple.onclick = function() {
+    //     btnSelectMultiple.disabled = true;
+    //     fileSelector.selectMultipleFiles(function(files) {
+    //         filesRemaining = {
+    //             files: files,
+    //             idx: 0
+    //         };
 
-            sendEntireDirectory();
-        }, onNoFileSelected);
-    };
+    //         sendEntireDirectory();
+    //     }, onNoFileSelected);
+    // };
 
-    var btnSelectDirectory = document.getElementById('select-directory');
-    btnSelectDirectory.onclick = function() {
-        btnSelectDirectory.disabled = true;
-        fileSelector.selectDirectory(function(files) {
-            filesRemaining = {
-                files: files,
-                idx: 0,
-                directory: true
-            };
+    // var btnSelectDirectory = document.getElementById('select-directory');
+    // btnSelectDirectory.onclick = function() {
+    //     btnSelectDirectory.disabled = true;
+    //     fileSelector.selectDirectory(function(files) {
+    //         filesRemaining = {
+    //             files: files,
+    //             idx: 0,
+    //             directory: true
+    //         };
 
-            sendEntireDirectory();
-        }, onNoFileSelected);
-    };
+    //         sendEntireDirectory();
+    //     }, onNoFileSelected);
+    // };
 
     function onNoFileSelected() {
         peerConnection.onopen();
@@ -474,81 +470,81 @@ window.addEventListener('load', function() {
 
     var filesRemaining = 'none';
 
-    function sendEntireDirectory() {
-        if (filesRemaining === 'none') return;
-        if (!filesRemaining.files[filesRemaining.idx]) {
-            filesRemaining = 'none';
-            return;
-        }
+    // function sendEntireDirectory() {
+    //     if (filesRemaining === 'none') return;
+    //     if (!filesRemaining.files[filesRemaining.idx]) {
+    //         filesRemaining = 'none';
+    //         return;
+    //     }
 
-        onFileSelected(filesRemaining.files[filesRemaining.idx]);
-    }
+    //     onFileSelected(filesRemaining.files[filesRemaining.idx]);
+    // }
 
     // drag-drop support
-    function onDragOver() {
-        mainContainer.style.border = '7px solid #98a90f';
-        mainContainer.style.background = '#ffff13';
-        mainContainer.style.borderRadisu = '16px';
-    }
+    // function onDragOver() {
+    //     mainContainer.style.border = '7px solid #98a90f';
+    //     mainContainer.style.background = '#ffff13';
+    //     mainContainer.style.borderRadisu = '16px';
+    // }
 
-    function onDragLeave() {
-        mainContainer.style.border = '1px solid rgb(189, 189, 189)';
-        mainContainer.style.background = 'transparent';
-        mainContainer.style.borderRadisu = 0;
-    }
+    // function onDragLeave() {
+    //     mainContainer.style.border = '1px solid rgb(189, 189, 189)';
+    //     mainContainer.style.background = 'transparent';
+    //     mainContainer.style.borderRadisu = 0;
+    // }
 
     var mainContainer = document.getElementById('main-container');
-    document.addEventListener('dragenter', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // document.addEventListener('dragenter', function(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        if (!peerConnection || !peerConnection.isOpened) return;
+    //     if (!peerConnection || !peerConnection.isOpened) return;
 
-        e.dataTransfer.dropEffect = 'copy';
-        onDragOver();
-    }, false);
+    //     e.dataTransfer.dropEffect = 'copy';
+    //     onDragOver();
+    // }, false);
 
-    document.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // document.addEventListener('dragleave', function(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        if (!peerConnection || !peerConnection.isOpened) return;
+    //     if (!peerConnection || !peerConnection.isOpened) return;
 
-        e.dataTransfer.dropEffect = 'copy';
-        onDragLeave();
-    }, false);
+    //     e.dataTransfer.dropEffect = 'copy';
+    //     onDragLeave();
+    // }, false);
 
-    document.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // document.addEventListener('dragover', function(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        if (!peerConnection || !peerConnection.isOpened) return;
+    //     if (!peerConnection || !peerConnection.isOpened) return;
 
-        e.dataTransfer.dropEffect = 'copy';
-        onDragOver();
-    }, false);
+    //     e.dataTransfer.dropEffect = 'copy';
+    //     onDragOver();
+    // }, false);
 
-    document.addEventListener('drop', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    // document.addEventListener('drop', function(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        if (!peerConnection || !peerConnection.isOpened) return;
+    //     if (!peerConnection || !peerConnection.isOpened) return;
 
-        onDragLeave();
+    //     onDragLeave();
 
-        if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
-            return;
-        }
+    //     if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
+    //         return;
+    //     }
 
-        var file = e.dataTransfer.files[0];
+    //     var file = e.dataTransfer.files[0];
 
-        if (!peerConnection || !peerConnection.isOpened) {
-            alert('Pleas setup WebRTC connection before sharing this file.');
-            return;
-        }
+    //     if (!peerConnection || !peerConnection.isOpened) {
+    //         alert('Pleas setup WebRTC connection before sharing this file.');
+    //         return;
+    //     }
 
-        onFileSelected(file);
-    }, false);
+    //     onFileSelected(file);
+    // }, false);
 
     // --------------------------------------------------------
     setupOffer.onclick = function(event) {
@@ -583,8 +579,8 @@ window.addEventListener('load', function() {
         }, 1000);
 
         btnSelectFile.disabled = true;
-        btnSelectDirectory.disabled = true;
-        btnSelectMultiple.disabled = true;
+        // btnSelectDirectory.disabled = true;
+        // btnSelectMultiple.disabled = true;
     }
 
     function millsecondsToSeconds(millis) {

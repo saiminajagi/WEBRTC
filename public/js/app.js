@@ -10,6 +10,8 @@ window.addEventListener('load', () => {
   // Local Video
   const localImageEl = $('#local-image');
   const localVideoEl = $('#local-video');
+  const photoFilter = $('#photo-filter');
+  let filter = 'none';
 
   // Remote Videos
   const remoteVideoTemplate = Handlebars.compile($('#remote-video-template').html());
@@ -149,5 +151,16 @@ window.addEventListener('load', () => {
       joinRoom(roomName);
     }
     return false;
+  });
+
+  $('#photo-filter').on('change', (event) => {
+    // Set filter to chosen option
+    filter = event.target.value;
+    //console.log(filter)
+    // Set filter to video
+    // localVideoEl.style.filter = filter;
+    $("video").css("filter",filter);
+
+    event.preventDefault(); 
   });
 });

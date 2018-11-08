@@ -391,7 +391,7 @@
 
             file.onchange = function() {
                 if (multiple) {
-                    if (!file.files.length) {
+                    if (!file.files.length) {FileBufferReaderHelper
                         console.error('No file selected.');
                         return;
                     }
