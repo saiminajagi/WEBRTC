@@ -1,11 +1,3 @@
-// Last time updated at Feb 15, 2016, 08:32:23
-
-// Muaz Khan      - www.MuazKhan.com
-// MIT License    - www.WebRTC-Experiment.com/licence
-// Documentation  - https://github.com/muaz-khan/FileBufferReader.js
-
-// _________________
-// PeerConnection.js
 
 (function() {
 

@@ -1,14 +1,3 @@
-// Last time updated: 2017-08-27 5:48:35 AM UTC
-
-// ________________
-// FileBufferReader
-
-// Open-Sourced: https://github.com/muaz-khan/FileBufferReader
-
-// --------------------------------------------------
-// Muaz Khan     - www.MuazKhan.com
-// MIT License   - www.WebRTC-Experiment.com/licence
-// --------------------------------------------------
 
 'use strict';
 

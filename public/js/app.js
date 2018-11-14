@@ -153,7 +153,7 @@ window.addEventListener('load', () => {
     return false;
   });
 
-  $('#photo-filter').on('change', (event) => {
+  photoFilter.on('change', (event) => {
     // Set filter to chosen option
     filter = event.target.value;
     //console.log(filter)
